@@ -8,6 +8,13 @@ public class Cashbook {
 	private String memo;
 	private String updateDate;
 	private String createDate;
+	
+	
+	@Override
+	public String toString() {
+		return "Cashbook [cashbookNo=" + cashbookNo + ", cashdate=" + cashdate + ", kind=" + kind + ", cash=" + cash
+				+ ", memo=" + memo + ", updateDate=" + updateDate + ", createDate=" + createDate + "]";
+	}
 	public int getCashbookNo() {
 		return cashbookNo;
 	}
