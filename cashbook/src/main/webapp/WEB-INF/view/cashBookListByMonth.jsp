@@ -25,14 +25,14 @@
 		int endBlank = (Integer)request.getAttribute("endBlank");
 		int totalTd = (Integer)request.getAttribute("totalTd");
 		
-		System.out.println(list.size() +"listSize() CashBookListByMonth.jsp");
-		System.out.println(y +"y CashBookListByMonth.jsp");
-		System.out.println(m +"m CashBookListByMonth.jsp");
+		System.out.println(list.size() +"listSize() cashBookListByMonth.jsp");
+		System.out.println(y +"y cashBookListByMonth.jsp");
+		System.out.println(m +"m cashBookListByMonth.jsp");
 		
-		System.out.println(startBlank +" <- startBlank CashBookListByMonth.jsp");
-		System.out.println(endDay +" <- endDay CashBookListByMonth.jsp");
-		System.out.println(endBlank +" <- endBlank CashBookListByMonth.jsp");
-		System.out.println(totalTd +" <- totalTd CashBookListByMonth.jsp");
+		System.out.println(startBlank +" <- startBlank cashBookListByMonth.jsp");
+		System.out.println(endDay +" <- endDay cashBookListByMonth.jsp");
+		System.out.println(endBlank +" <- endBlank cashBookListByMonth.jsp");
+		System.out.println(totalTd +" <- totalTd cashBookListByMonth.jsp");
 	%>
 	<h2><%=y%>년 <%=m%>월</h2>
 	<div>
@@ -82,6 +82,7 @@
 	 				 					if((Integer)map.get("day") == (i-startBlank)) {
 	 				 			%>
 	 				 						<div>
+	 				 						<a href="<%=request.getContextPath()%>/CashBookOneController?cashbookNo=<%=map.get("cashbookNo")%>">
 	 				 						[<%=map.get("kind")%>] 
 	 				 						<%=map.get("cash")%>원
 	 				 						<%=map.get("memo")%>...

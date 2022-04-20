@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.CashbookDao;
-import vo.Cashbook;
+import dao.CashBookDao;
+import vo.CashBook;
 
 @WebServlet("/InsertCashBookController")
 public class InsertCashBookController extends HttpServlet {
@@ -36,11 +36,11 @@ public class InsertCashBookController extends HttpServlet {
       System.out.println(cash + " <--cash InsertCashBookController.doPost()");
       System.out.println(memo + " <--memo InsertCashBookController.doPost()");
       
-      Cashbook cashbook = new Cashbook();
-      cashbook.setCashDate(cashDate);
-      cashbook.setKind(kind);
-      cashbook.setCash(cash);
-      cashbook.setMemo(memo);
+      CashBook cashBook = new CashBook();
+      cashBook.setCashDate(cashDate);
+      cashBook.setKind(kind);
+      cashBook.setCash(cash);
+      cashBook.setMemo(memo);
       
       List<String> hashtag = new ArrayList<>();
       String memo2 = memo.replace("#", " #");
@@ -58,8 +58,8 @@ public class InsertCashBookController extends HttpServlet {
          System.out.println(h + " <-- hashtag InsertCashBookController.doPost()");
       }
       
-      CashbookDao cashbookDao = new CashbookDao();
-      cashbookDao.insertCashbook(cashbook, hashtag);
+      CashBookDao cashbookDao = new CashBookDao();
+      cashbookDao.insertCashBook(cashBook, hashtag);
       
       response.sendRedirect(request.getContextPath()+"/CashBookListByMonthController");
    }

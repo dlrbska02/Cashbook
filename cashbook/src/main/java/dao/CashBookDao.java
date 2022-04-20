@@ -10,10 +10,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import vo.Cashbook;
+import vo.CashBook;
 
-public class CashbookDao {
-	public void insertCashbook(Cashbook cashbook, List<String> hashtag) {
+public class CashBookDao {
+	public void insertCashBook(CashBook cashbook, List<String> hashtag) {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -95,6 +95,48 @@ public class CashbookDao {
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, y);
 			stmt.setInt(2, m);
+			rs = stmt.executeQuery();
+			while(rs.next()) {
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("cashbookNo", rs.getInt("cashbookNo"));
+				map.put("day", rs.getInt("day"));
+				map.put("kind", rs.getString("kind"));
+				map.put("cash", rs.getInt("cash"));
+				map.put("memo", rs.getString("memo"));
+				list.add(map);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				stmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+	public List<Map<String, Object>> selectCashBookOne(int cashbookNo) {
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT"
+				+ "		 	cashbook_no cashbookNo"
+				+ "		 	,cash_date cashDate"
+				+ "		 	,kind"
+				+ "		 	,cash"
+				+ "			,memo"
+				+ "		 FROM cashbook"
+				+ "		 WHERE cashbook_no=?";
+		try {
+			Class.forName("org.mariadb.jdbc.Driver");
+			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/cashbook","root","java1234");
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, cashbookNo);
 			rs = stmt.executeQuery();
 			while(rs.next()) {
 				Map<String, Object> map = new HashMap<String, Object>();

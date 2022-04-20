@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.CashbookDao;
+import dao.CashBookDao;
 /*
  * controller <<- WebServlet 
  * /CashBookListByMonthController <-- 이게 나왔을때 controller가 잡아오는 역할 
@@ -79,8 +79,8 @@ public class CashBookListByMonthController extends HttpServlet {
       
       
       // 2) 모델값(월별 가계부 리스트)을 반환하는 비지니스로직(모델) 호출
-      CashbookDao cashbookDao = new CashbookDao();
-      List<Map<String, Object>> list = cashbookDao.selectCashbookListByMonth(y, m);
+      CashBookDao cashBookDao = new CashBookDao();
+      List<Map<String, Object>> list = cashBookDao.selectCashbookListByMonth(y, m);
       /*
        달력출력에 필요한 모델값(1), 2), 3), 4)) + 데이터베이스에서 반환된 모델값(list, y출력년도, m출력월) + 오늘날짜(today)
        */
@@ -94,7 +94,7 @@ public class CashBookListByMonthController extends HttpServlet {
       request.setAttribute("m", m);
  
       // 3) 뷰 포워딩
-      request.getRequestDispatcher("/WEB-INF/view/CashBookListByMonth.jsp").forward(request, response);
+      request.getRequestDispatcher("/WEB-INF/view/cashBookListByMonth.jsp").forward(request, response);
    }
 
 }
