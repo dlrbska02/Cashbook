@@ -15,7 +15,7 @@ import dao.CashbookDao;
 /*
  * controller <<- WebServlet 
  * /CashBookListByMonthController <-- 이게 나왔을때 controller가 잡아오는 역할 
- * 
+ * u
  * */
 
 @WebServlet("/CashBookListByMonthController")
@@ -64,7 +64,7 @@ public class CashBookListByMonthController extends HttpServlet {
       // startBlank    일0, 월1, ... 토6
       // 1)
       int startBlank = dayOfWeek - 1;
-      // 마지막 날짜는 자바 달력api를 이요하여 구하자
+      // 마지막 날짜는 자바 달력api를 이용하여 구하자
       // 2)
       int endDay = firstDay.getActualMaximum(Calendar.DATE);// firstDay달의 제일 큰수자 -> 마지막날짜
       // strartBlank와 endDay를 합의 결과에 endBlank를 더해서 7의 배수가 되도록
